@@ -85,7 +85,8 @@ Try it yourself!
 - Create a new table for "bills_subjects"
 -- SQLBook: Code
 -- Write your own code
-
+drop table if exists bill_subjects;
+CREATE Table bill_subjects ("Congress" int, bill_number int, bill_type varchar(30), bill_subject varchar(30));
 
 -- SQLBook: Markup
 # <span style="color:darkblue"> II. Import CSV into SQL </span>
@@ -154,7 +155,7 @@ SELECT * FROM us_congress_members
 -- You just have to change the FROM argument
 --
 COPY us_congress_members
-FROM 'D:\GitHub\qtm151spring2023\Lecture 18\data\us_congress_members.csv'
+FROM '/private/tmp/data/us_congress_members.csv'
 WITH (DELIMITER ',', FORMAT csv, HEADER MATCH);
 
 
@@ -176,7 +177,7 @@ SELECT * FROM bills_actions
 -- You just have to change the FROM argument
 --
 COPY bills_actions
-FROM 'D:\GitHub\qtm151spring2023\Lecture 18\data\bills_actions.csv'
+FROM '/private/tmp/data/bills_actions.csv'
 WITH (DELIMITER ',', FORMAT csv, HEADER MATCH);
 
 
@@ -254,11 +255,7 @@ Try it yourself!
 - Count the unique number of members by 'chamber'
 -- SQLBook: Code
 -- Write your own code
-
-
-
-
-
+SELECT count(*) FROM (SELECT DISTINCT member_id, chamber FROM us_congress_members) uniq GROUP BY uniq.chamber;
 -- SQLBook: Markup
 # <span style="color:darkblue"> IV. (Optional) Additional Resources </span>
 
